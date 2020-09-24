@@ -1,0 +1,51 @@
+.headerResults{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.container_fluid{
+    width: 50%;
+    margin:3em auto;
+    padding: 30px 20px;
+    background-color:rgba(255, 255, 255, .5);
+    border-radius: 15px;
+}
+.box{
+    width: 100%;
+    padding: 15px;
+    border-bottom: 1px solid rgba(40, 0, 0, .3);
+}
+
+.listBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.boxTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.boxTitle img{
+    width: 200px;
+    border-radius: 5px;
+}
+.boxTitle strong{
+    font-size: 1.2em;
+}
+.dateMovie{
+    display: flex;
+    justify-content: space-between;
+}
+.description{
+    margin:15px 0;
+}
+.minBox{
+    margin:3px;
+    background-color:#d35400;
+    padding: 3px 9px;
+    border-radius: 8px;
+    color:#fff;
+    font-size: .8em;
+    text-align: center;
+}
