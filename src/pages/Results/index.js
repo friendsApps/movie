@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
-import { IoIosArrowDropleft} from 'react-icons/io'
+import { IoIosArrowDropleft } from "react-icons/io";
 
 import "./index.css";
 
-function Results() {
-  const history = useHistory();
+function Results(props) {
   const [results, setResults] = useState([]);
+  const history = useHistory();
 
   function goBack() {
     return history.goBack();
   }
+  useEffect(() => {
+    const movie = props.history.location.state;
+    setResults([movie]);
+  }, []);
+
   return (
     <div className="container">
       <header></header>
@@ -20,41 +25,40 @@ function Results() {
       <section className="container_fluid">
         <header className="headerResults">
           <div>
-            <IoIosArrowDropleft color="#000" size={32} onClick={goBack}/>
+            <IoIosArrowDropleft color="#000" size={32} onClick={goBack} />
           </div>
-<div>
-  <h2>Lista de Filmes</h2>
-</div>
+          <div>
+            <h2>Lista de Filmes</h2>
+          </div>
         </header>
 
         <section>
-          
-          <div className="box">
-            <div className="dateMovie">
-              <div className="boxTitle">
-                <img src="https://m.media-amazon.com/images/M/MV5BMTUzNTc3MTU3M15BMl5BanBnXkFtZTcwMzIxNTc3NA@@._V1_SX300.jpg" alt="" />
-                <strong>Cars 2</strong>
+          {results.map((item) => (
+            <div className="box" key={item.imdbID}>
+              <div className="dateMovie">
+                <div className="boxTitle">
+                  <img src={item.Poster} alt="" />
+                  <strong>{item.Title}</strong>
+                </div>
+
+                <div>
+                  <strong>{item.Year}</strong>
+                </div>
               </div>
 
-              <div>
-                <small>2011</small>
+              <div className="description">
+                <p>{item.Plot}</p>
+              </div>
+
+              <div className="listBox">
+                {item.Genre.split(",").map((item) => (
+                  <p className="minBox" key={item}>
+                    {item}
+                  </p>
+                ))}
               </div>
             </div>
-
-            <div className="description">
-              <p>
-                Star race car Lightning McQueen and his pal Mater head overseas
-                to compete in the World Grand Prix race. But the road to the
-                championship becomes rocky as Mater gets caught up in an
-                intriguing adventure of his own: international espionage.
-              </p>
-            </div>
-
-            <div className="listBox">
-              <div className="minBox">Animation</div>
-              <div className="minBox">Adventure</div>
-            </div>
-          </div>
+          ))}
         </section>
       </section>
     </div>
